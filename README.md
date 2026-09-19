@@ -1,4 +1,4 @@
-# 移动教务 · 湖南人文科技学院
+# HUHST 
 
 把湖南人文科技学院的**强智教务系统**做成原生 Android App。数据经学校 WebVPN 或校园网直连获取，
 界面用 Jetpack Compose + Material 3 Expressive 从零实现。

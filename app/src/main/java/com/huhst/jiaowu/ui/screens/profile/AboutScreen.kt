@@ -32,9 +32,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.huhst.jiaowu.R
 import com.huhst.jiaowu.data.model.NetChannel
 import com.huhst.jiaowu.ui.components.SectionHeader
 import com.huhst.jiaowu.ui.vm.AppViewModel
@@ -154,7 +156,7 @@ fun AboutScreen(vm: AppViewModel, navController: NavController) {
             Spacer(Modifier.height(8.dp))
             SectionHeader("关于")
             InfoCard {
-                InfoRow("应用", "移动教务")
+                InfoRow("应用", stringResource(R.string.app_name))
                 InfoRow("版本", versionName)
                 InfoRow("学校", "湖南人文科技学院")
                 Spacer(Modifier.height(4.dp))
