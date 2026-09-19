@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 仅作为 Compose 启动前的窗口底色，真实主题在 Compose 侧定义 -->
+    <style name="Theme.Jiaowu" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/m3_surface</item>
+    </style>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  明文 HTTP 只对校内教务相关主机放行，其余域名一律要求 HTTPS。
+  背景：门户 vpn.huhst.edu.cn:9900 仅提供 HTTP，教务系统在内网 10.1.1.149。
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">vpn.huhst.edu.cn</domain>
+        <domain includeSubdomains="false">10.1.1.149</domain>
+        <domain includeSubdomains="false">10.1.1.76</domain>
+        <domain includeSubdomains="false">10.1.1.80</domain>
+        <domain includeSubdomains="false">10.1.1.160</domain>
+    </domain-config>
+</network-security-config>
