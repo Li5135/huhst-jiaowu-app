@@ -1,8 +1,6 @@
 package com.huhst.jiaowu.ui
 
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
@@ -105,19 +103,26 @@ fun MainScaffold(vm: AppViewModel) {
 
             NavHost(
                 navController = navController,
-                startDestination = Routes.MORE,
+                startDestination = Routes.SCHEDULE,
                 modifier = Modifier.padding(innerPadding),
-            enterTransition = {
-                fadeIn(tween(220)) + slideInHorizontally(tween(220)) { it / 10 }
-            },
-            exitTransition = { fadeOut(tween(160)) },
-            popEnterTransition = {
-                fadeIn(tween(220)) + slideInHorizontally(tween(220)) { -it / 10 }
-            },
-            popExitTransition = {
-                fadeOut(tween(160)) + slideOutHorizontally(tween(160)) { it / 10 }
-            },
-        ) {
+                // ⚠️ 位移必须是**整屏宽**，不能只挪一点点。
+                // 曾经用的是「淡入淡出 + 位移 10%」：两个页面几乎停在同一位置交叉淡化，
+                // 而页面为了透出自定义背景是透明的，于是两页文字直接叠加成重影。
+                // 整屏位移让新旧两页始终**并排接力**（旧的滑出多少、新的就补进多少），
+                // 任一时刻只可能看到一页，同时保留前进/后退的方向感。
+                enterTransition = {
+                    slideInHorizontally(tween(300)) { it }
+                },
+                exitTransition = {
+                    slideOutHorizontally(tween(300)) { -it }
+                },
+                popEnterTransition = {
+                    slideInHorizontally(tween(300)) { -it }
+                },
+                popExitTransition = {
+                    slideOutHorizontally(tween(300)) { it }
+                },
+            ) {
             composable(Routes.MORE) { MoreScreen(vm, navController) }
             composable(Routes.SCHEDULE) { ScheduleScreen(vm, navController) }
             composable(Routes.PROFILE) { ProfileScreen(vm, navController) }
